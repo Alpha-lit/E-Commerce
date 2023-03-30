@@ -1,0 +1,10 @@
+<h1>Order Confirmation</h1>
+<p>Thank you for your order, {{ customer.name }}!</p>
+<p>Your order number is {{ order.id }}.</p>
+<p>The total cost of your order is {{ order.order_total }}.</p>
+
+<form method="post">
+  {% csrf_token %}
+  <input type="hidden" name="order_id" value="{{ order.id }}">
+  <button type="submit">Confirm Order</button>
+</form>

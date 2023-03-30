@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Your Cart</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}">
+</head>
+<body>
+    <h1>Your Cart</h1>
+
+    <div class="cart-items">
+        {% for item in cart %}
+            <div class="cart-item">
+                <h3>{{ item.product.name }}</h3>
+                <p>Quantity: {{ item.quantity }}</p>
+                <p>Price: ${{ item.total_price }}</p>
+                <form method="POST" action="{% url 'remove_from_cart' item.product.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Remove from cart</button>
+                </form>
+            </div>
+        {% empty %}
+            <p>Your cart is empty.</p>
+        {% endfor %}
+    </div>
+
+    <div class="cart-total">
+        <h3>Total: ${{ cart.get_total_price }}</h3>
+        <form action="{% url 'checkout' %}">
+            {% csrf_token %}
+            <button type="submit">Checkout</button>
+        </form>
+    </div>
+
+</body>
+</html>

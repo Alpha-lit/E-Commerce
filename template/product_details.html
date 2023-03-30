@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- Fav  Icon Link -->
+          <link rel="shortcut icon" type="image/JPG" href="{% static 'images/favicon.ico' %}">
+        <link rel="stylesheet" href="{% static '/css/products.css' %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gaming PC Haven</title>
+    </head>
+<body>
+    <div class="product-card">
+        <div class="product-image">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        </div>
+        <div class="product-details">
+            <h3 class="product-title">{{ product.name }}</h3>
+            <p class="product-description">{{ product.description}}</p>
+            <ul>
+                {% for line in product.specifications.splitlines %}
+                    {% if line != 'So, gear up for an epic gaming journey with the Thunderbolt II Gaming PC!' %}
+                        <li>{{ line }}</li>
+                    {% else %}
+                        <p>{{ line }}</p>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <p class="product-price">${{ product.price }}</p>
+            <form action="{% url 'add_to_cart' product.id %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <label for="id_quantity">Quantity:</label>
+                <input type="hidden" name="product_id" value="{{ product.id }}">
+                <input type="number" name="quantity" value="1" required>
+                <button type="submit">Add to cart</button>
+            </form>
+        </div>
+    </div> 
+</body>
+</html>

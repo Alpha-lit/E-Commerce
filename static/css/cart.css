@@ -1,0 +1,64 @@
+.cart {
+    padding: 20px;
+    margin: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  .cart h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .cart table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .cart th, .cart td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .cart th {
+    background-color: #f2f2f2;
+  }
+  
+  .cart td img {
+    width: 80px;
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  .cart td.qty {
+    width: 150px;
+  }
+  
+  .cart td.qty input {
+    width: 50px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+  }
+  
+  .cart td.actions {
+    width: 100px;
+  }
+  
+  .cart td.actions button {
+    display: block;
+    margin: 5px auto;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .cart td.actions button:hover {
+    background-color: #3e8e41;
+  }
+  

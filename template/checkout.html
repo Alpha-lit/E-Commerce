@@ -1,0 +1,50 @@
+<h1>Checkout</h1>
+<h1>{{customer}}</h1>
+{% if cart %}
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.price }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="2">Total:</td>
+                <td>{{ cart.get_total_price  }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Payment information</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+          <label for="shipping_address">Shipping Address:</label>
+          <textarea id="shipping_address" name="shipping_address" required></textarea>
+        </div>
+        <div>
+          <label for="payment_method">Payment Method:</label>
+          <select id="payment_method" name="payment_method" required>
+            <option value="">Select Payment Method</option>
+            <option value="credit_card">Credit Card</option>
+            <option value="paypal">Paypal</option>
+          </select>
+        </div>
+        <div>
+          <label for="payment_data">Payment Data:</label>
+          <textarea id="payment_data" name="payment_data" required></textarea>
+        </div>
+        <button type="submit">Place Order</button>
+      </form>
+{% else %}
+    <p>Your cart is empty.</p>
+{% endif %}
